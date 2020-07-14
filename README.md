@@ -1,7 +1,7 @@
 # Cult-Registration
 
 <h1 align="center">
-  <img src="./public/assets/register-cult.png">
+  <img src="./public/assets/Cult-Registration.png">
 </h1>
 
 ## 📝 Description
