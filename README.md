@@ -1,6 +1,6 @@
 # Cult-Registration
 
-[![HitCount](https://hits.dwyl.com/KleytonLeite/Cult-Registration.svg)](https://hits.dwyl.com/KleytonLeite/Cult-Registration-git)
+[![HitCount](http://hits.dwyl.com/KleytonLeite/KleytonLeite/Cult-Registration.svg)](http://hits.dwyl.com/KleytonLeite/KleytonLeite/Cult-Registration)
 
 <h1 align="center">
   <img src="./public/assets/Cult-Registration.png">
