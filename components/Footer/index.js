@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <div className='inset-x-0 bottom-0 m-1 sm:absolute md:fixed text-center text-white bg-red-700'>
+        <div className='inset-x-0 bottom-0 m-1 sm:absolute md:relative text-center text-white bg-red-700'>
             <div className='container mx-auto p-6'>
                 <p><span className='font-semibold uppercase'>IECB
                 Igreja Episcopal Carismática do Brasil  </span><br></br>

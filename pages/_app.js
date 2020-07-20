@@ -7,7 +7,7 @@ import '../css/styles.css'
 
 const MyApp = ({ Component, pageProps }) => {
     return (
-        <div className="m-1">
+        <div className="m-2 container mx-auto shadow-lg">
             <div>
                 <Header />
                 <Menu />

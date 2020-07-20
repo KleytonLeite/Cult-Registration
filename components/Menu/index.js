@@ -14,7 +14,7 @@ const Menu = () => {
 
                 <div class="w-1/4 h12 border-solid border-r-2 border-white hover:underline"> 
                     <Link href='/sobre'>
-                        <a>Sobre</a>
+                        <a>Arcebispo</a>
                     </Link>
                 </div>
 
