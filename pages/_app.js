@@ -1,22 +1,12 @@
 import React from 'react'
-import Header from '../components/Header'
-import Menu from '../components/Menu'
-import Footer from '../components/Footer'
-
 import '../css/styles.css'
+import Layout from '../components/Layout'
 
 const MyApp = ({ Component, pageProps }) => {
-    return (
-        <div className="m-2 container mx-auto shadow-lg">
-            <div>
-                <Header />
-                <Menu />
-                <div className='relative h-full'>
-                <Component {...pageProps} />
-                </div>
-                <Footer />
-            </div>
-        </div>
-    )
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
 }
 export default MyApp

@@ -1,7 +1,7 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 const credentials = require('./google-credentials.json')
 
-const doc = new GoogleSpreadsheet('1lZX6QuETHFhiTojs4RK8EqR32V_i2E79_yIMeprJHIQ')
+const doc = new GoogleSpreadsheet('13t1YbWN6N71UGpURfDbs6vIharBECzMmjG-Xb50lFDU')
 
 const run = async () => {
     try {
@@ -13,10 +13,11 @@ const run = async () => {
        // cod	name	email	idade	data
 
        await sheet.addRow({
-           cod:'aaaaa',
-           name:'kleyton leite',
-           email:'musicpteclados@gmail.com',
-           idade:'41',
+           Nome:'kleyton leite',
+           Email:'musicpteclados@gmail.com',
+           Whastapp:'41',
+           Cupom: 'teste',
+           Promo: 'teste',
            data:'14/07/2020'
        })
 

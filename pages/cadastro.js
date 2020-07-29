@@ -1,90 +1,97 @@
-import React from 'react'
-import useSWR from 'swr'
-
-
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+import React, { useState } from 'react'
+import Link from 'next/link'
+import PageTitle from '../components/PageTitle'
 
 const Cadastro = () => {
-    const { data, error } = useSWR('/api/getHabilitarCadastro', fetcher)
+    const [form, setForm] = useState({
+        Nome: '',
+        Email: '',
+        Idade: ''
+    })
+    const [sucess, setSuccess] = useState(false)
+    const [retorno, setRetorno] = useState({})
     const enviar = async () => {
-        const form = {
-            name: 'aaaa',
-            email: 'bbbb',
-            idade: '18'
-        }
         try {
             const response = await fetch('/api/enviarCadastro', {
                 method: 'POST',
                 body: JSON.stringify(form)
             })
             const data = await response.json()
-            console.log(data)
+            setSuccess(true)
+            setRetorno(data)
         } catch (error) {
-
         }
+    }
+    const onChange = evt => {
+        const value = evt.target.value
+        const key = evt.target.name
+        setForm(old => ({
+            ...old,
+            [key]: value
+        }))
     }
     return (
         <div className='container mx-auto w-full max-w-lg '>
-            {data && data.showCadastro &&
-            <div class="mt-12 bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 mt-4 shadow-md" role="alert">
-                
-                <div class="flex">
-                    <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" /></svg></div>
+            <PageTitle title='Cadastro' />
+            <div className="flex items-center bg-red-500 text-white text-sm font-bold px-4 py-3 text-sm font-bold px-4 py-3 mb-2 mt-4 uppercase text-center">
+                <div className="flex">
                     <div>
-                        <p class="font-bold">Inscrição para o culto</p>
-                        <p class="text-sm">{data.message}.</p>
+                        <p className="font-bold">Inscrições</p>
                     </div>
                 </div>
-                
             </div>
-            }
-            <form class="container mx-auto py-8 px-4 rounded overflow-hidden shadow-lg w-full max-w-lg mt-12 mb-12">
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            {!sucess &&
+            <div class="container mx-auto w-full max-w-lg mt-12 mb-12'">
+                <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
                             Nome
-                    </label>
-                        <input class="appearance-none block w-full bg-red-100 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Nome e Sobre Nome" />
-                        <p class="text-red-500 text-xs italic">Por favor preencher todos os campos.</p>
+                        </label>
+                        <input className="appearance-none block w-full bg-red-100 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            type="text" placeholder="Nome e Sobre Nome"
+                            onChange={onChange} name='Nome' value={form.Nome} />
                     </div>
-                    <div class="w-full md:w-1/2 px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-                            E-mail
-                    </label>
-                        <input class="appearance-none block w-full bg-red-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="exemplo@com.br" />
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            Email
+                        </label>
+                        <input className="appearance-none block w-full bg-red-100 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            type="text"
+                            placeholder="exemplo@com.br"
+                            onChange={onChange} name='Email' value={form.Email} />
                     </div>
-                </div>
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
                             Idade
-                    </label>
-                        <input class="appearance-none block w-full bg-red-100 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 mr-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Sua Idade" />
-                        <p class="text-red-500 text-xs italic">Maiores de 18 anos</p>
+                        </label>
+                        <input className="appearance-none block w-full bg-red-100 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 mr-3 leading-tight focus:outline-none focus:bg-white"
+                            type="text"
+                            placeholder="Sua Idade"
+                            onChange={onChange} name='Idade' value={form.Idade} />
+                        <p class="text-red-500 text-xs italic">Entre 11 de 59 anos</p>
                     </div>
-                    <div class="w-full md:w-1/2 px-6 mb-6 mt-6 md:mb-0">
-                        {data && data.showCadastro &&
-                        <button className='uppercase appearance-none block w-full pacity-75 bg-teal-500 hover:bg-teal-600 p-3 rounded text-white font-semibold' onClick={enviar}>
+                    
+                    <div class="flex items-center justify-between">
+                    <button className='uppercase appearance-none block w-full pacity-75 bg-teal-500 hover:bg-teal-600 p-3 rounded text-white font-semibold' onClick={enviar}>
                             Enviar
-                        </button> 
-                        }
-                        {!data || !data.showCadastro &&
-                        <button class="uppercase appearance-none block w-full pacity-75 bg-teal-500 hover:bg-teal-600 p-3 rounded text-white font-semibold opacity-50 cursor-not-allowed">
-                            Enviar
-                        </button>
-                        }
+                      </button>
+                        <div class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 p-8">
+                        <Link href='/'>
+                             <a >Voltar</a>
+                         </Link>
+                        </div>                     
                     </div>
-                </div>
-            </form>
-
-            {!data || !data.showCadastro  && 
-            <div className='py-6 mb-12 '>
-                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 shadow-md" role="alert">
-                    <p class="font-bold">IECB Pedimos desculpas!</p><p>{data.messageErro}! .</p>
-                </div>
+                </form>
             
+                <p class="text-center text-gray-500 text-xs mb-6">
+                &copy;2020 Kleyton Leite. All rights reserved.
+                    </p>
             </div>
             }
+            {sucess && <div><p>Cadastro Realizado com Sucesso!!</p>
+                {console.log(sucess)}
+             cod: {retorno.showCodigo}
+            </div>}
         </div>
     )
 }
