@@ -3,7 +3,6 @@ import Header from '../Header'
 import Footer from '../Footer'
 import Menu from '../Menu'
 
-
 const Layout = ({ children }) => {
   return (
     <div className='m-2 container mx-auto shadow-lg'>
